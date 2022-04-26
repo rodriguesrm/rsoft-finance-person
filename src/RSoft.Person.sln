@@ -3,7 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSoft.Person.Core", "RSoft.Person.Core\RSoft.Person.Core.csproj", "{DFE5E776-6FDD-4474-8E55-B437B2F12321}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Person.Core", "RSoft.Person.Core\RSoft.Person.Core.csproj", "{DFE5E776-6FDD-4474-8E55-B437B2F12321}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Solution Items", "0-Solution Items", "{C027DFDE-1447-4AAB-9505-317FD3954188}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Docs", "1-Docs", "{3A64E726-2E3C-4511-B6DC-0802BF74759F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Web", "2-Web", "{521EC00C-E616-49E4-B217-1DAA42A190ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Application", "3-Application", "{85145D2C-68EC-434A-98F2-877C3FD55BD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Worker", "4-Worker", "{E0A5E8A6-46DC-4EF8-8F4D-C917260E4232}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Core", "5-Core", "{520C67D8-36D4-4C55-886F-290AA869EDC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6-Infra", "6-Infra", "{9D00D8F3-0B78-4F8D-A758-635CD65033B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7-Cross", "7-Cross", "{8B23BF38-8B1B-4C5C-A77A-79DD3FFC1100}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8-SDK", "8-SDK", "{CF55F30C-306B-41A8-9EB6-1AB170BC120C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9-Tests", "9-Tests", "{03002B72-705D-4F30-8B41-17760572BDC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +38,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DFE5E776-6FDD-4474-8E55-B437B2F12321} = {520C67D8-36D4-4C55-886F-290AA869EDC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EC080486-0553-49DB-9C73-11C5AD6FDB2C}
