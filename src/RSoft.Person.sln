@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8-SDK", "8-SDK", "{CF55F30C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9-Tests", "9-Tests", "{03002B72-705D-4F30-8B41-17760572BDC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSoft.Person.Infra", "RSoft.Person.Infra\RSoft.Person.Infra.csproj", "{5D9D7416-737D-42CA-9318-E0EEC2D80475}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,12 +37,17 @@ Global
 		{DFE5E776-6FDD-4474-8E55-B437B2F12321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFE5E776-6FDD-4474-8E55-B437B2F12321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFE5E776-6FDD-4474-8E55-B437B2F12321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D9D7416-737D-42CA-9318-E0EEC2D80475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D9D7416-737D-42CA-9318-E0EEC2D80475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D9D7416-737D-42CA-9318-E0EEC2D80475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D9D7416-737D-42CA-9318-E0EEC2D80475}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DFE5E776-6FDD-4474-8E55-B437B2F12321} = {520C67D8-36D4-4C55-886F-290AA869EDC9}
+		{5D9D7416-737D-42CA-9318-E0EEC2D80475} = {9D00D8F3-0B78-4F8D-A758-635CD65033B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EC080486-0553-49DB-9C73-11C5AD6FDB2C}
