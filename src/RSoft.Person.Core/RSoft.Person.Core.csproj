@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
@@ -6,13 +6,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="FluentValidator" Version="2.0.4" />
+		<PackageReference Include="RSoft.Finance.Contracts" Version="1.4.0" />
 		<PackageReference Include="RSoft.Lib.Common" Version="1.6.0" />
-		<PackageReference Include="RSoft.Lib.Design" Version="1.6.2" />
+		<PackageReference Include="RSoft.Lib.Design" Version="1.7.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Services\" />
-	  <Folder Include="Ports\" />
 	</ItemGroup>
 
 </Project>
