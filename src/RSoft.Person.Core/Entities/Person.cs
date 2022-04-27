@@ -53,7 +53,9 @@ namespace RSoft.Person.Core.Entities
         /// </summary>
         public Name Name { get; set; } = new Name(string.Empty, string.Empty);
 
-        ///<inheritdoc/>
+        /// <summary>
+        /// Person phone number
+        /// </summary>
         public string PhoneNumber { get; set; }
 
         ///<inheritdoc/>
@@ -62,7 +64,7 @@ namespace RSoft.Person.Core.Entities
         /// <summary>
         /// Notes about the person
         /// </summary>
-        public string Notes { get; set; }
+        public string Note { get; set; }
 
         #endregion
 
@@ -91,7 +93,7 @@ namespace RSoft.Person.Core.Entities
                 LastNameMaximumLength = 100
             }).Contract.Notifications);
 
-            AddNotifications(new SimpleStringValidationContract(Notes, nameof(Notes), false, 0, 2000).Contract.Notifications);
+            AddNotifications(new SimpleStringValidationContract(Note, nameof(Note), false, 0, 2000).Contract.Notifications);
 
             int pos = 1;
             foreach (PersonAddress address in Addresses)

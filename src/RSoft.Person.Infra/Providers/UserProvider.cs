@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RSoft.Person.Infra.Providers
 {
-    internal class UserProvider
+    public class UserProvider
     {
     }
 }
