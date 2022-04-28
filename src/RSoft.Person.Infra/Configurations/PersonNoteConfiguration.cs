@@ -39,7 +39,7 @@ namespace RSoft.Person.Infra.Configurations
                 .WithOne(d => d.Note)
                 .HasForeignKey<PersonNote>(fk => fk.PersonId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName($"FK_{nameof(PersonNote)}_{nameof(Tables.Person)}");
+                .HasConstraintName($"FK_{nameof(Tables.Person)}_{nameof(PersonNote)}_{nameof(PersonNote.PersonId)}");
 
             #endregion
 

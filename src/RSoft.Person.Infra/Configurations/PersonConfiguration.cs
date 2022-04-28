@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RSoft.Person.Infra.Tables;
 
 namespace RSoft.Person.Infra.Configurations
 {
@@ -46,17 +45,17 @@ namespace RSoft.Person.Infra.Configurations
 
             #region FKs
 
-            builder.HasOne(o => o.CreatedAuthor)
-                .WithMany(d => d.CreatedPersons)
+            builder.HasOne(s => s.CreatedAuthor)
+                .WithMany(t => t.CreatedPersons)
                 .HasForeignKey(fk => fk.CreatedBy)
                 .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName($"FK_{nameof(User)}_CreatedAuthor");
+                .HasConstraintName($"FK_{nameof(Tables.User)}_{nameof(Tables.Person)}_{nameof(Tables.Person.CreatedBy)}");
 
             builder.HasOne(o => o.ChangedAuthor)
                 .WithMany(d => d.ChangedPersons)
                 .HasForeignKey(fk => fk.ChangedBy)
                 .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName($"FK_{nameof(User)}_ChangedAuthor");
+                .HasConstraintName($"FK_{nameof(Tables.User)}_{nameof(Tables.Person)}_{nameof(Tables.Person.ChangedBy)}");
 
             #endregion
 
@@ -64,7 +63,7 @@ namespace RSoft.Person.Infra.Configurations
 
             builder
                 .HasIndex(i => new { i.FirstName, i.LastName })
-                .HasDatabaseName($"IX_{nameof(User)}_FullName");
+                .HasDatabaseName($"IX_{nameof(Tables.Person)}_FullName");
 
             #endregion
 

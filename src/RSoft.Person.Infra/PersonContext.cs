@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RSoft.Lib.Design.Infra.Data;
+using RSoft.Person.Infra.Configurations;
 using RSoft.Person.Infra.Tables;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -30,7 +31,11 @@ namespace RSoft.Person.Infra
         ///<inheritdoc/>
         protected override void SetTableConfiguration(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new PersonConfiguration());
+            modelBuilder.ApplyConfiguration(new PersonAddressConfiguration());
+            modelBuilder.ApplyConfiguration(new PersonConfiguration());
+            modelBuilder.ApplyConfiguration(new PersonNoteConfiguration());
+            modelBuilder.ApplyConfiguration(new PersonTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
 
         #endregion

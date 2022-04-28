@@ -78,7 +78,7 @@ namespace RSoft.Person.Infra.Configurations
                 .WithMany(d => d.Addresses)
                 .HasForeignKey(fk => fk.PersonId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName($"FK_{nameof(PersonAddress)}_{nameof(Tables.Person)}");
+                .HasConstraintName($"FK_{nameof(Tables.Person)}_{nameof(PersonAddress)}_{nameof(PersonAddress.PersonId)}");
 
             #endregion
 
