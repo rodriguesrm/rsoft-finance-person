@@ -6,8 +6,16 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSoft.Person.Core", "RSoft.Person.Core\RSoft.Person.Core.csproj", "{DFE5E776-6FDD-4474-8E55-B437B2F12321}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Solution Items", "0-Solution Items", "{C027DFDE-1447-4AAB-9505-317FD3954188}"
+	ProjectSection(SolutionItems) = preProject
+		test.runsettings = test.runsettings
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Docs", "1-Docs", "{3A64E726-2E3C-4511-B6DC-0802BF74759F}"
+	ProjectSection(SolutionItems) = preProject
+		..\docs\license.txt = ..\docs\license.txt
+		..\README.md = ..\README.md
+		..\docs\release-notes.md = ..\docs\release-notes.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Web", "2-Web", "{521EC00C-E616-49E4-B217-1DAA42A190ED}"
 EndProject
@@ -27,6 +35,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9-Tests", "9-Tests", "{0300
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSoft.Person.Infra", "RSoft.Person.Infra\RSoft.Person.Infra.csproj", "{5D9D7416-737D-42CA-9318-E0EEC2D80475}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSoft.Person.Cross", "RSoft.Person.Cross\RSoft.Person.Cross.csproj", "{12478C6D-D586-44F4-8D7A-49D898025DDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSoft.Person.Contracts", "RSoft.Person.Contracts\RSoft.Person.Contracts.csproj", "{0584AE32-3591-4B38-A8CE-99386F1D6DC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSoft.Person.Application", "RSoft.Person.Application\RSoft.Person.Application.csproj", "{2A67FC34-B982-48D3-9373-F1AA55C6FE02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +55,18 @@ Global
 		{5D9D7416-737D-42CA-9318-E0EEC2D80475}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D9D7416-737D-42CA-9318-E0EEC2D80475}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D9D7416-737D-42CA-9318-E0EEC2D80475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12478C6D-D586-44F4-8D7A-49D898025DDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12478C6D-D586-44F4-8D7A-49D898025DDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12478C6D-D586-44F4-8D7A-49D898025DDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12478C6D-D586-44F4-8D7A-49D898025DDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0584AE32-3591-4B38-A8CE-99386F1D6DC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0584AE32-3591-4B38-A8CE-99386F1D6DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0584AE32-3591-4B38-A8CE-99386F1D6DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0584AE32-3591-4B38-A8CE-99386F1D6DC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A67FC34-B982-48D3-9373-F1AA55C6FE02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A67FC34-B982-48D3-9373-F1AA55C6FE02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A67FC34-B982-48D3-9373-F1AA55C6FE02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A67FC34-B982-48D3-9373-F1AA55C6FE02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +74,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DFE5E776-6FDD-4474-8E55-B437B2F12321} = {520C67D8-36D4-4C55-886F-290AA869EDC9}
 		{5D9D7416-737D-42CA-9318-E0EEC2D80475} = {9D00D8F3-0B78-4F8D-A758-635CD65033B4}
+		{12478C6D-D586-44F4-8D7A-49D898025DDC} = {8B23BF38-8B1B-4C5C-A77A-79DD3FFC1100}
+		{0584AE32-3591-4B38-A8CE-99386F1D6DC3} = {8B23BF38-8B1B-4C5C-A77A-79DD3FFC1100}
+		{2A67FC34-B982-48D3-9373-F1AA55C6FE02} = {85145D2C-68EC-434A-98F2-877C3FD55BD7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EC080486-0553-49DB-9C73-11C5AD6FDB2C}
