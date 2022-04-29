@@ -41,6 +41,11 @@ namespace RSoft.Person.Infra.Configurations
                 .HasMaxLength(20)
                 .IsUnicode(false);
 
+            builder.Property(c => c.Note)
+                .HasColumnName(nameof(Tables.Person.Note))
+                .HasMaxLength(2000)
+                .IsUnicode(false);
+
             #endregion
 
             #region FKs

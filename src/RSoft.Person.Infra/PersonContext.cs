@@ -33,7 +33,6 @@ namespace RSoft.Person.Infra
         {
             modelBuilder.ApplyConfiguration(new PersonAddressConfiguration());
             modelBuilder.ApplyConfiguration(new PersonConfiguration());
-            modelBuilder.ApplyConfiguration(new PersonNoteConfiguration());
             modelBuilder.ApplyConfiguration(new PersonTypeConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
@@ -51,11 +50,6 @@ namespace RSoft.Person.Infra
         /// PersonAddress dbset
         /// </summary>
         public virtual DbSet<PersonAddress> PersonAddresses { get; set; }
-
-        /// <summary>
-        /// PersonNote dbset
-        /// </summary>
-        public virtual DbSet<PersonNote> PersonNotes { get; set; }
 
         /// <summary>
         /// PersonType dbset

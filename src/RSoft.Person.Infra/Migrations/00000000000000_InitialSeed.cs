@@ -21,8 +21,8 @@ namespace RSoft.Person.Infra.Migrations
         protected void Seed(MigrationBuilder migrationBuilder)
         {
 
-            Guid userId = new("745991cc-c21f-4512-ba8f-9533435b64ab");
-            //Guid serviceId = new("3f3b94db-d868-4cb3-8098-214a53eccc35");
+            Guid userId = new("d2401226-754a-4535-85bc-6a3e559da66d");
+            Guid serviceId = new("4d6016b8-9a70-434c-96ab-35a94824b6db");
 
             migrationBuilder.Sql("set foreign_key_checks=0");
 
@@ -39,18 +39,18 @@ namespace RSoft.Person.Infra.Migrations
                 new object[] { userId, "Admin", "RSoft", true }
             );
 
-            //migrationBuilder.InsertData
-            //(
-            //    nameof(User),
-            //    new string[]
-            //    {
-            //        nameof(User.Id),
-            //        nameof(User.FirstName),
-            //        nameof(User.LastName),
-            //        nameof(User.IsActive)
-            //    },
-            //    new object[] { serviceId, "Entry", "Service", true }
-            //);
+            migrationBuilder.InsertData
+            (
+                nameof(User),
+                new string[]
+                {
+                    nameof(User.Id),
+                    nameof(User.FirstName),
+                    nameof(User.LastName),
+                    nameof(User.IsActive)
+                },
+                new object[] { serviceId, "Person", "Service", true }
+            );
 
             migrationBuilder.Sql("set foreign_key_checks=1");
 

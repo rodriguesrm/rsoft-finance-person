@@ -52,6 +52,12 @@ namespace RSoft.Person.Infra.Migrations
                         .HasColumnType("varchar(100)")
                         .HasColumnName("LastName");
 
+                    b.Property<string>("Note")
+                        .HasMaxLength(2000)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(2000)")
+                        .HasColumnName("Note");
+
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(20)
                         .IsUnicode(false)
@@ -150,23 +156,6 @@ namespace RSoft.Person.Infra.Migrations
                     b.ToTable("PersonAddress");
                 });
 
-            modelBuilder.Entity("RSoft.Person.Infra.Tables.PersonNote", b =>
-                {
-                    b.Property<Guid?>("PersonId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Note")
-                        .IsRequired()
-                        .HasMaxLength(2000)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(2000)")
-                        .HasColumnName("Note");
-
-                    b.HasKey("PersonId");
-
-                    b.ToTable("PersonNote");
-                });
-
             modelBuilder.Entity("RSoft.Person.Infra.Tables.PersonType", b =>
                 {
                     b.Property<Guid?>("PersonId")
@@ -247,18 +236,6 @@ namespace RSoft.Person.Infra.Migrations
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("RSoft.Person.Infra.Tables.PersonNote", b =>
-                {
-                    b.HasOne("RSoft.Person.Infra.Tables.Person", "Person")
-                        .WithOne("Note")
-                        .HasForeignKey("RSoft.Person.Infra.Tables.PersonNote", "PersonId")
-                        .HasConstraintName("FK_Person_PersonNote_PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
-                });
-
             modelBuilder.Entity("RSoft.Person.Infra.Tables.PersonType", b =>
                 {
                     b.HasOne("RSoft.Person.Infra.Tables.Person", "Person")
@@ -274,8 +251,6 @@ namespace RSoft.Person.Infra.Migrations
             modelBuilder.Entity("RSoft.Person.Infra.Tables.Person", b =>
                 {
                     b.Navigation("Addresses");
-
-                    b.Navigation("Note");
 
                     b.Navigation("Types");
                 });

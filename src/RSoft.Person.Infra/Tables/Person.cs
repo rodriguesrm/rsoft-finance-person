@@ -1,4 +1,5 @@
 ﻿using RSoft.Lib.Common.Contracts.Entities;
+using RSoft.Lib.Design.Infra.Data;
 using RSoft.Lib.Design.Infra.Data.Tables;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace RSoft.Person.Infra.Tables
     /// Person table entity
     /// </summary>
     [ExcludeFromCodeCoverage(Justification = "Class to map database table in EntityFramework")]
-    public class Person : TableIdAuditBase<Guid, Person>, ITable, IActive, IFullName
+    public class Person : TableIdAuditBase<Guid, Person>, ITable, IActive, IFullName, IAuditNavigation<Guid, User>
     {
 
         #region Constructors
@@ -60,6 +61,11 @@ namespace RSoft.Person.Infra.Tables
         /// </summary>
         public string PhoneNumber { get; set; }
 
+        /// <summary>
+        /// Person's notes
+        /// </summary>
+        public string Note { get; set; }
+
         ///<inheritdoc/>
         public bool IsActive { get; set; }
 
@@ -76,11 +82,6 @@ namespace RSoft.Person.Infra.Tables
         /// Changed author data
         /// </summary>
         public virtual User ChangedAuthor { get; set; }
-
-        /// <summary>
-        /// Person's note data
-        /// </summary>
-        public virtual PersonNote Note { get; set; }
 
         /// <summary>
         /// Person's types data

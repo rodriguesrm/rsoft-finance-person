@@ -38,6 +38,8 @@ namespace RSoft.Person.Infra.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PhoneNumber = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Note = table.Column<string>(type: "varchar(2000)", unicode: false, maxLength: 2000, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     IsActive = table.Column<ulong>(type: "bit", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CreatedBy = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -90,26 +92,6 @@ namespace RSoft.Person.Infra.Migrations
                     table.PrimaryKey("PK_PersonAddress", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Person_PersonAddress_PersonId",
-                        column: x => x.PersonId,
-                        principalTable: "Person",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "PersonNote",
-                columns: table => new
-                {
-                    PersonId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Note = table.Column<string>(type: "varchar(2000)", unicode: false, maxLength: 2000, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PersonNote", x => x.PersonId);
-                    table.ForeignKey(
-                        name: "FK_Person_PersonNote_PersonId",
                         column: x => x.PersonId,
                         principalTable: "Person",
                         principalColumn: "Id",
@@ -190,9 +172,6 @@ namespace RSoft.Person.Infra.Migrations
         {
             migrationBuilder.DropTable(
                 name: "PersonAddress");
-
-            migrationBuilder.DropTable(
-                name: "PersonNote");
 
             migrationBuilder.DropTable(
                 name: "PersonType");
