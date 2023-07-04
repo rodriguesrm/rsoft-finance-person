@@ -29,6 +29,10 @@ namespace RSoft.Person.Infra.Configurations
                 .HasColumnName(nameof(PersonAddress.PersonId))
                 .IsRequired();
 
+            builder.Property(c => c.AddressTypeId)
+                .HasColumnName(nameof(PersonAddress.AddressTypeId))
+                .IsRequired();
+
             builder.Property(c => c.Title)
                 .HasColumnName(nameof(PersonAddress.Title))
                 .HasMaxLength(40)
@@ -80,12 +84,21 @@ namespace RSoft.Person.Infra.Configurations
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName($"FK_{nameof(Tables.Person)}_{nameof(PersonAddress)}_{nameof(PersonAddress.PersonId)}");
 
+            builder.HasOne(o => o.AddressType)
+                .WithMany(d => d.Addresses)
+                .HasForeignKey(fk => fk.AddressTypeId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName($"FK_{nameof(Tables.AddressType)}_{nameof(PersonAddress)}_{nameof(PersonAddress.AddressTypeId)}");
+
             #endregion
 
             #region Indexes
 
             builder.HasIndex(i => i.PersonId)
                 .HasDatabaseName($"IX_{nameof(PersonAddress)}_{nameof(PersonAddress.PersonId)}");
+
+            builder.HasIndex(i => i.AddressTypeId)
+                .HasDatabaseName($"IX_{nameof(PersonAddress)}_{nameof(PersonAddress.AddressTypeId)}");
 
             builder.HasIndex(i => i.Title)
                 .HasDatabaseName($"AK_{nameof(PersonAddress)}_{nameof(PersonAddress.Title)}")

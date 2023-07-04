@@ -4,7 +4,6 @@ using RSoft.Person.Infra.Configurations;
 using RSoft.Person.Infra.Tables;
 using System;
 using System.Diagnostics.CodeAnalysis;
-//using RSoft.Person.Infra.Tables;
 
 namespace RSoft.Person.Infra
 {
@@ -31,8 +30,10 @@ namespace RSoft.Person.Infra
         ///<inheritdoc/>
         protected override void SetTableConfiguration(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new AddressTypeConfiguration());
             modelBuilder.ApplyConfiguration(new PersonAddressConfiguration());
             modelBuilder.ApplyConfiguration(new PersonConfiguration());
+            modelBuilder.ApplyConfiguration(new PersonPhoneConfiguration());
             modelBuilder.ApplyConfiguration(new PersonTypeConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
@@ -40,6 +41,11 @@ namespace RSoft.Person.Infra
         #endregion
 
         #region DbSets
+
+        /// <summary>
+        /// Address types dbset
+        /// </summary>
+        public virtual DbSet<AddressType> AddressTypes { get; set; }
 
         /// <summary>
         /// Person dbset
@@ -50,6 +56,11 @@ namespace RSoft.Person.Infra
         /// PersonAddress dbset
         /// </summary>
         public virtual DbSet<PersonAddress> PersonAddresses { get; set; }
+
+        /// <summary>
+        /// PersonPhone dbset
+        /// </summary>
+        public virtual DbSet<PersonPhone> PersonPhones { get; set; }
 
         /// <summary>
         /// PersonType dbset

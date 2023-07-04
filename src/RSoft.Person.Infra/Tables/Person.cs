@@ -57,11 +57,6 @@ namespace RSoft.Person.Infra.Tables
         public string LastName { get; set; }
 
         /// <summary>
-        /// Person phone number
-        /// </summary>
-        public string PhoneNumber { get; set; }
-
-        /// <summary>
         /// Person's notes
         /// </summary>
         public string Note { get; set; }
@@ -92,6 +87,11 @@ namespace RSoft.Person.Infra.Tables
         /// Person's addresses data
         /// </summary>
         public virtual ICollection<PersonAddress> Addresses { get; set; }
+
+        /// <summary>
+        /// Person's phones data
+        /// </summary>
+        public virtual ICollection<PersonPhone> Phones { get; set; }
 
         #endregion
 

@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RSoft.Person.Infra;
 
+#nullable disable
+
 namespace RSoft.Person.Infra.Migrations
 {
     [DbContext(typeof(PersonContext))]
@@ -14,8 +16,28 @@ namespace RSoft.Person.Infra.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.10");
+                .HasAnnotation("ProductVersion", "6.0.13")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("RSoft.Person.Infra.Tables.AddressType", b =>
+                {
+                    b.Property<byte>("Id")
+                        .HasColumnType("tinyint unsigned");
+
+                    b.Property<int>("Description")
+                        .HasMaxLength(80)
+                        .IsUnicode(false)
+                        .HasColumnType("int")
+                        .HasColumnName("Description");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Description")
+                        .IsUnique()
+                        .HasDatabaseName("AK_AddressType_Description");
+
+                    b.ToTable("AddressType", (string)null);
+                });
 
             modelBuilder.Entity("RSoft.Person.Infra.Tables.Person", b =>
                 {
@@ -58,12 +80,6 @@ namespace RSoft.Person.Infra.Migrations
                         .HasColumnType("varchar(2000)")
                         .HasColumnName("Note");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(20)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(20)")
-                        .HasColumnName("PhoneNumber");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ChangedBy")
@@ -81,7 +97,7 @@ namespace RSoft.Person.Infra.Migrations
                     b.HasIndex("FirstName", "LastName")
                         .HasDatabaseName("IX_Person_FullName");
 
-                    b.ToTable("Person");
+                    b.ToTable("Person", (string)null);
                 });
 
             modelBuilder.Entity("RSoft.Person.Infra.Tables.PersonAddress", b =>
@@ -95,6 +111,10 @@ namespace RSoft.Person.Infra.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(15)")
                         .HasColumnName("AddressNumber");
+
+                    b.Property<byte>("AddressTypeId")
+                        .HasColumnType("tinyint unsigned")
+                        .HasColumnName("AddressTypeId");
 
                     b.Property<string>("City")
                         .HasMaxLength(80)
@@ -146,6 +166,9 @@ namespace RSoft.Person.Infra.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddressTypeId")
+                        .HasDatabaseName("IX_PersonAddress_AddressTypeId");
+
                     b.HasIndex("PersonId")
                         .HasDatabaseName("IX_PersonAddress_PersonId");
 
@@ -153,7 +176,58 @@ namespace RSoft.Person.Infra.Migrations
                         .IsUnique()
                         .HasDatabaseName("AK_PersonAddress_Title");
 
-                    b.ToTable("PersonAddress");
+                    b.ToTable("PersonAddress", (string)null);
+                });
+
+            modelBuilder.Entity("RSoft.Person.Infra.Tables.PersonPhone", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("CityCode")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(5)")
+                        .HasColumnName("CityCode");
+
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(5)")
+                        .HasColumnName("CountryCode");
+
+                    b.Property<ulong>("IsDefault")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(0ul)
+                        .HasColumnName("IsDefault");
+
+                    b.Property<Guid?>("PersonId")
+                        .IsRequired()
+                        .HasColumnType("char(36)")
+                        .HasColumnName("PersonId");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("PhoneNumber");
+
+                    b.Property<int>("PhoneType")
+                        .HasColumnType("int")
+                        .HasColumnName("PhoneType");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonId", "CountryCode", "CityCode", "PhoneNumber")
+                        .IsUnique()
+                        .HasDatabaseName("AK_PersonPhone_Person_FullPhoneNumber");
+
+                    b.ToTable("PersonPhone", (string)null);
                 });
 
             modelBuilder.Entity("RSoft.Person.Infra.Tables.PersonType", b =>
@@ -170,7 +244,7 @@ namespace RSoft.Person.Infra.Migrations
                     b.HasIndex("PersonId")
                         .HasDatabaseName("IX_PersonType_PersonId");
 
-                    b.ToTable("PersonType");
+                    b.ToTable("PersonType", (string)null);
                 });
 
             modelBuilder.Entity("RSoft.Person.Infra.Tables.User", b =>
@@ -201,7 +275,7 @@ namespace RSoft.Person.Infra.Migrations
                     b.HasIndex("FirstName", "LastName")
                         .HasDatabaseName("IX_User_FullName");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("RSoft.Person.Infra.Tables.Person", b =>
@@ -209,15 +283,15 @@ namespace RSoft.Person.Infra.Migrations
                     b.HasOne("RSoft.Person.Infra.Tables.User", "ChangedAuthor")
                         .WithMany("ChangedPersons")
                         .HasForeignKey("ChangedBy")
-                        .HasConstraintName("FK_User_Person_ChangedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasConstraintName("FK_User_Person_ChangedBy");
 
                     b.HasOne("RSoft.Person.Infra.Tables.User", "CreatedAuthor")
                         .WithMany("CreatedPersons")
                         .HasForeignKey("CreatedBy")
-                        .HasConstraintName("FK_User_Person_CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_User_Person_CreatedBy");
 
                     b.Navigation("ChangedAuthor");
 
@@ -226,12 +300,33 @@ namespace RSoft.Person.Infra.Migrations
 
             modelBuilder.Entity("RSoft.Person.Infra.Tables.PersonAddress", b =>
                 {
+                    b.HasOne("RSoft.Person.Infra.Tables.AddressType", "AddressType")
+                        .WithMany("Addresses")
+                        .HasForeignKey("AddressTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("FK_AddressType_PersonAddress_AddressTypeId");
+
                     b.HasOne("RSoft.Person.Infra.Tables.Person", "Person")
                         .WithMany("Addresses")
                         .HasForeignKey("PersonId")
-                        .HasConstraintName("FK_Person_PersonAddress_PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_Person_PersonAddress_PersonId");
+
+                    b.Navigation("AddressType");
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("RSoft.Person.Infra.Tables.PersonPhone", b =>
+                {
+                    b.HasOne("RSoft.Person.Infra.Tables.Person", "Person")
+                        .WithMany("Phones")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_Person_PersonPhone_PersonId");
 
                     b.Navigation("Person");
                 });
@@ -241,16 +336,23 @@ namespace RSoft.Person.Infra.Migrations
                     b.HasOne("RSoft.Person.Infra.Tables.Person", "Person")
                         .WithMany("Types")
                         .HasForeignKey("PersonId")
-                        .HasConstraintName("FK_Person_PersonType_PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("FK_Person_PersonType_PersonId");
 
                     b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("RSoft.Person.Infra.Tables.AddressType", b =>
+                {
+                    b.Navigation("Addresses");
                 });
 
             modelBuilder.Entity("RSoft.Person.Infra.Tables.Person", b =>
                 {
                     b.Navigation("Addresses");
+
+                    b.Navigation("Phones");
 
                     b.Navigation("Types");
                 });

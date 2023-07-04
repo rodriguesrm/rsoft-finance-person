@@ -1,13 +1,28 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace RSoft.Person.Infra.Migrations
 {
-    public partial class InitialCreateDb : InitialSeed
+    public partial class InitialCreate : InitialSeed
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "AddressType",
+                columns: table => new
+                {
+                    Id = table.Column<byte>(type: "tinyint unsigned", nullable: false),
+                    Description = table.Column<int>(type: "int", unicode: false, maxLength: 80, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AddressType", x => x.Id);
+                })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
@@ -35,8 +50,6 @@ namespace RSoft.Person.Infra.Migrations
                     FirstName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastName = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    PhoneNumber = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Note = table.Column<string>(type: "varchar(2000)", unicode: false, maxLength: 2000, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -70,6 +83,7 @@ namespace RSoft.Person.Infra.Migrations
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     PersonId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    AddressTypeId = table.Column<byte>(type: "tinyint unsigned", nullable: false),
                     Title = table.Column<string>(type: "varchar(40)", unicode: false, maxLength: 40, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     StreetName = table.Column<string>(type: "varchar(80)", unicode: false, maxLength: 80, nullable: true)
@@ -91,7 +105,40 @@ namespace RSoft.Person.Infra.Migrations
                 {
                     table.PrimaryKey("PK_PersonAddress", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_AddressType_PersonAddress_AddressTypeId",
+                        column: x => x.AddressTypeId,
+                        principalTable: "AddressType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Person_PersonAddress_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Person",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "PersonPhone",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    PersonId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    PhoneType = table.Column<int>(type: "int", nullable: false),
+                    CountryCode = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CityCode = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    PhoneNumber = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    IsDefault = table.Column<ulong>(type: "bit", nullable: false, defaultValue: 0ul)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonPhone", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Person_PersonPhone_PersonId",
                         column: x => x.PersonId,
                         principalTable: "Person",
                         principalColumn: "Id",
@@ -117,6 +164,12 @@ namespace RSoft.Person.Infra.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "AK_AddressType_Description",
+                table: "AddressType",
+                column: "Description",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Person_ChangedBy",
@@ -150,9 +203,20 @@ namespace RSoft.Person.Infra.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_PersonAddress_AddressTypeId",
+                table: "PersonAddress",
+                column: "AddressTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PersonAddress_PersonId",
                 table: "PersonAddress",
                 column: "PersonId");
+
+            migrationBuilder.CreateIndex(
+                name: "AK_PersonPhone_Person_FullPhoneNumber",
+                table: "PersonPhone",
+                columns: new[] { "PersonId", "CountryCode", "CityCode", "PhoneNumber" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersonType_PersonId",
@@ -174,7 +238,13 @@ namespace RSoft.Person.Infra.Migrations
                 name: "PersonAddress");
 
             migrationBuilder.DropTable(
+                name: "PersonPhone");
+
+            migrationBuilder.DropTable(
                 name: "PersonType");
+
+            migrationBuilder.DropTable(
+                name: "AddressType");
 
             migrationBuilder.DropTable(
                 name: "Person");

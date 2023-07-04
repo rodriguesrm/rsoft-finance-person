@@ -34,8 +34,7 @@ namespace RSoft.Person.Infra.Extensions
                 result = new PersonDomain(table.Id)
                 {
                     Name = new Name(table.FirstName, table.LastName),
-                    PhoneNumber = table.PhoneNumber,
-
+                    //PhoneNumber = ??? //TODO: Change to ValueObject for Phone and List
                     CreatedOn = table.CreatedOn,
                     ChangedOn = table.ChangedOn,
                     IsActive = table.IsActive
@@ -78,7 +77,7 @@ namespace RSoft.Person.Infra.Extensions
                 {
                     FirstName = entity.Name.FirstName,
                     LastName = entity.Name.LastName,
-                    PhoneNumber = entity.PhoneNumber,
+                    //PhoneNumber = ??? //TODO: Change to ValueObject for Phone and List
                     Note = entity.Note,
                     IsActive = entity.IsActive,
                     CreatedOn = entity.CreatedOn,
@@ -109,7 +108,7 @@ namespace RSoft.Person.Infra.Extensions
 
                 table.FirstName = entity.Name.FirstName;
                 table.LastName = entity.Name.LastName;
-                table.PhoneNumber = entity.PhoneNumber;
+                //table.PhoneNumber = entity.PhoneNumber; //TODO: Change to ValueObject for Phone and List
                 table.IsActive = entity.IsActive;
                 table.ChangedOn = entity.ChangedOn;
                 table.ChangedBy = entity.ChangedAuthor.Id;

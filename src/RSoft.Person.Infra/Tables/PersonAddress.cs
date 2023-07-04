@@ -47,6 +47,11 @@ namespace RSoft.Person.Infra.Tables
         public Guid? PersonId { get; set; }
 
         /// <summary>
+        /// Address type id key value
+        /// </summary>
+        public byte AddressTypeId { get; set; }
+
+        /// <summary>
         /// Person-Address title
         /// </summary>
         public string Title { get; set; }
@@ -80,6 +85,11 @@ namespace RSoft.Person.Infra.Tables
         /// Person data
         /// </summary>
         public virtual Person Person { get; set; }
+
+        /// <summary>
+        /// Address type data
+        /// </summary>
+        public virtual AddressType AddressType { get; set; }
 
         #endregion
 

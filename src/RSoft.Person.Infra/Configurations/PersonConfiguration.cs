@@ -36,11 +36,6 @@ namespace RSoft.Person.Infra.Configurations
                 .IsUnicode(false)
                 .IsRequired();
 
-            builder.Property(c => c.PhoneNumber)
-                .HasColumnName(nameof(Tables.Person.PhoneNumber))
-                .HasMaxLength(20)
-                .IsUnicode(false);
-
             builder.Property(c => c.Note)
                 .HasColumnName(nameof(Tables.Person.Note))
                 .HasMaxLength(2000)
